@@ -1,0 +1,89 @@
+TITLE:: SampleTexto2
+summary:: Read sound samples by index.
+categories:: Undocumented classes
+related:: Classes/Buffer
+
+DESCRIPTION::
+Reads the sound files of a folder by its index. By default reads the folder called <sampletexto>.
+
+
+First code examples:
+
+code::
+~a=SampleTexto2.new;
+~a.init(path: "/choose_your_sound_path/");
+~a.st(4).play;
+
+// Divide by stereo or mono files
+~a.stsel;
+~a.stm(0).play;
+~a.sts(0).play;
+~a.info;
+
+// create mono and stereo synths
+~a.monosynth(2);
+~a.stereosynth(2);
+
+Synth(\m1);
+Synth(\s1);
+
+// Mono Synth arguments
+[\rate, 1,
+\sp, 0,
+\at, 0.001,
+\sus, 1,
+\rel, 0.001,
+\pan, 0,
+\amp, 1,
+\out, 0]
+
+// Stereo Synth arguments
+[\rate, 1,
+\sp, 0,
+\at, 0.001,
+\sus, 1,
+\rel, 0.001,
+\amp, 1,
+\out, 0]
+::
+
+CLASSMETHODS::
+
+METHOD:: new
+
+
+INSTANCEMETHODS::
+
+METHOD:: init
+argument:: server
+argument:: path
+
+METHOD:: st
+argument:: num1
+
+METHOD:: sampleDictionary
+
+
+EXAMPLES::
+
+code::
+~a=SampleTexto2.new;
+~a.init(path: "/path/");
+~a.st(4).play;
+
+~a.stsel;
+~a.stm(1).play;
+~a.sts(1).play;
+~a.info;
+
+// the argument is number of mono audiofiles in your folder -1
+~a.monosynth();
+// the argument is number of stereo audiofiles in your folder -1
+~a.stereosynth();
+
+// sustain multiplies the duration of the audio file. 1 means the whole archive duration.
+Synth(\m1, [\sus, 1]);
+
+// 0.5 means the half of the archive duration from zero to duration * 0.5.
+Synth(\m1, [\sus, 0.5]);
+::
